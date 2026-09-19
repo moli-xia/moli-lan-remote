@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>魔力局域网远程助手</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='5' width='28' height='18' rx='3' fill='%233b82f6'/%3E%3Crect x='12' y='25' width='8' height='3' rx='1.5' fill='%233b82f6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- 连接页 -->
+<div id="landing" class="page">
+  <div class="card">
+    <div class="brand"><span class="logo-dot"></span>魔力远程助手</div>
+    <div class="brand-sub">局域网远程桌面 · 主控端</div>
+    <div class="dev" id="devInfo"><span class="dev-name">正在获取设备信息…</span></div>
+    <label class="field-label" for="codeInput">连接验证码</label>
+    <input id="codeInput" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="6 位数字" spellcheck="false">
+    <button id="btnConnect" class="primary">连&ensp;接</button>
+    <div id="quickReconnect" class="link hidden">使用上次会话快速重连</div>
+    <div id="landingMsg" class="msg"></div>
+  </div>
+  <div class="foot">魔力局域网远程助手 · 仅供学习与合法远程协助使用</div>
+</div>
+
+<!-- 观看/控制页 -->
+<div id="viewer" class="page hidden">
+  <div id="stage">
+    <div id="canvasWrap">
+      <canvas id="screen" width="16" height="9"></canvas>
+      <div id="cursor" style="display:none">
+        <svg width="20" height="20" viewBox="0 0 24 24">
+          <path d="M5 2.5 L19.5 12 L12.6 13.2 L16.2 20.6 L13.2 22 L9.7 14.6 L5 18.2 Z"
+                fill="#ffffff" stroke="#1f2937" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div id="hint">等待画面…</div>
+    </div>
+  </div>
+
+  <div id="toolbar">
+    <span class="tb-brand"><span class="logo-dot small"></span>魔力远程助手</span>
+    <label class="tb-item toggle"><input type="checkbox" id="controlToggle" checked><span>控制模式</span></label>
+    <label class="tb-item">画质
+      <select id="qualitySelect">
+        <option value="smooth">流畅</option>
+        <option value="hd" selected>高清</option>
+        <option value="best">超清</option>
+        <option value="custom">自定义</option>
+      </select>
+    </label>
+    <label class="tb-item">屏幕 <select id="monSelect"></select></label>
+    <button id="btnText" class="tb-btn" title="远程文字输入(支持中文)">文字</button>
+    <button id="btnClipGet" class="tb-btn" title="读取远程剪贴板">取剪贴板</button>
+    <button id="btnClipSet" class="tb-btn" title="设置远程剪贴板">贴到远程</button>
+    <button id="btnShot" class="tb-btn" title="保存当前画面截图">截图</button>
+    <button id="btnFull" class="tb-btn" title="全屏显示">全屏</button>
+    <button id="btnLeave" class="tb-btn danger">断开</button>
+  </div>
+
+  <div id="status" class="hidden"></div>
+
+  <div id="textBar" class="hidden">
+    <textarea id="textInput" rows="1" placeholder="在此输入文字(支持中文输入法),自动发送到远程电脑"></textarea>
+    <button id="btnTextOff" title="关闭文字输入">✕</button>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div class="ov-box">
+      <div class="spin"></div>
+      <p id="overlayMsg">连接中…</p>
+      <button id="btnBack" class="hidden">返 回</button>
+    </div>
+  </div>
+
+  <div id="clipModal" class="hidden">
+    <div class="clip-box">
+      <h3 id="clipTitle">剪贴板</h3>
+      <textarea id="clipText" rows="6" placeholder="粘贴或输入要传输的文字"></textarea>
+      <div class="clip-row">
+        <button id="clipCopy">复制到本机</button>
+        <button id="clipSend" class="primary">发送到远程剪贴板</button>
+        <button id="clipClose">关 闭</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

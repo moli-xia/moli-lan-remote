@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moli_remote"
+version = "1.0.0"
+description = "Romoter · 局域网远程桌面工具(参照 UU 远程交互)"
+requires-python = ">=3.9"
+dependencies = [
+    "aiohttp>=3.9",
+    "mss>=9.0",
+    "Pillow>=10.0",
+    "pynput>=1.7.6",
+    "pyperclip>=1.8",
+    "PySide6-Essentials>=6.6",
+    "pyturbojpeg>=2.0",
+]
+
+[project.scripts]
+moli_remote = "moli_remote.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["moli_remote*"]
+
+[tool.setuptools.package-data]
+moli_remote = ["static/*"]

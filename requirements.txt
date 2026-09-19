@@ -1,0 +1,7 @@
+aiohttp>=3.9
+mss>=9.0
+Pillow>=10.0
+pynput>=1.7.6
+pyperclip>=1.8
+PySide6-Essentials>=6.6
+pyturbojpeg>=2.0
